@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JDI Marketing — Websites That Work</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2eb;
+    --accent: #d4f03c;
+    --accent-dark: #a8c22e;
+    --gray: #1a1a1a;
+    --gray-mid: #2e2e2e;
+    --gray-light: #888;
+    --serif: 'Bebas Neue', sans-serif;
+    --body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #1f1f1f;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--gray-light);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--black) !important;
+    padding: 0.6rem 1.4rem;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    color: var(--black);
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--accent-dark) !important; color: var(--black) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 4rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(212,240,60,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(212,240,60,0.04) 0%, transparent 60%);
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(212,240,60,0.4);
+    padding: 0.4rem 0.9rem;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(5rem, 12vw, 11rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    max-width: 900px;
+  }
+
+  .hero h1 .line-accent { color: var(--accent); }
+
+  .hero-sub {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .hero-desc {
+    max-width: 420px;
+    color: var(--gray-light);
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--black);
+    padding: 1rem 2.2rem;
+    font-family: var(--body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 1rem 2.2rem;
+    font-family: var(--body);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid #333;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+
+  .btn-outline:hover { border-color: var(--white); transform: translateY(-1px); }
+
+  /* TICKER */
+  .ticker {
+    border-top: 1px solid #1f1f1f;
+    border-bottom: 1px solid #1f1f1f;
+    overflow: hidden;
+    padding: 1rem 0;
+    background: var(--gray);
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 0;
+    animation: ticker 22s linear infinite;
+    width: max-content;
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 2.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    white-space: nowrap;
+  }
+
+  .ticker-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* SECTION COMMONS */
+  section { padding: 7rem 4rem; }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  /* HOW IT WORKS */
+  .how { background: var(--gray); }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid #2e2e2e;
+    position: relative;
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    line-height: 1;
+    color: #2e2e2e;
+    flex-shrink: 0;
+    width: 60px;
+    transition: color 0.3s;
+  }
+
+  .step:hover .step-num { color: var(--accent); }
+
+  .step-content h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+
+  .step-content p {
+    font-size: 0.9rem;
+    color: var(--gray-light);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .how-visual {
+    position: sticky;
+    top: 7rem;
+    background: var(--black);
+    border: 1px solid #2e2e2e;
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mock-browser {
+    width: 88%;
+    background: #111;
+    border-radius: 6px;
+    border: 1px solid #2a2a2a;
+    overflow: hidden;
+  }
+
+  .mock-bar {
+    background: #1a1a1a;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid #2a2a2a;
+  }
+
+  .mock-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .mock-url {
+    flex: 1;
+    background: #111;
+    border-radius: 3px;
+    height: 20px;
+    margin: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.6rem;
+  }
+
+  .mock-url span {
+    font-size: 0.65rem;
+    color: var(--gray-light);
+    letter-spacing: 0.02em;
+  }
+
+  .mock-hero-strip {
+    height: 80px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    gap: 0.5rem;
+  }
+
+  .mock-hero-text { flex: 1; }
+  .mock-h { height: 10px; background: #2e2e2e; border-radius: 2px; margin-bottom: 5px; }
+  .mock-h.wide { width: 70%; }
+  .mock-h.narrow { width: 45%; background: rgba(212,240,60,0.3); }
+  .mock-h.btn { width: 28%; height: 22px; background: var(--accent); opacity: 0.7; border-radius: 2px; }
+
+  .mock-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    padding: 10px;
+    background: #0d0d0d;
+  }
+
+  .mock-card {
+    background: #1a1a1a;
+    border-radius: 3px;
+    height: 50px;
+    border: 1px solid #252525;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    margin-top: 4rem;
+    border: 1px solid #1f1f1f;
+  }
+
+  .service-card {
+    background: var(--black);
+    padding: 2.5rem;
+    border: 1px solid #1f1f1f;
+    transition: background 0.25s;
+    cursor: default;
+  }
+
+  .service-card:hover { background: var(--gray); }
+
+  .service-icon {
+    width: 44px; height: 44px;
+    border: 1px solid #2e2e2e;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .service-card h3 {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .service-card p {
+    font-size: 0.88rem;
+    color: var(--gray-light);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* PRICING */
+  .pricing { background: var(--gray); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .pricing-card {
+    background: var(--black);
+    border: 1px solid #2e2e2e;
+    border-radius: 4px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s;
+  }
+
+  .pricing-card:hover { border-color: #444; }
+
+  .pricing-card.featured {
+    border-color: var(--accent);
+    position: relative;
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -1px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--black);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0.3rem 1rem;
+    border-radius: 0 0 3px 3px;
+  }
+
+  .pricing-tier {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-light);
+    margin-bottom: 1rem;
+  }
+
+  .pricing-price {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .pricing-price sub {
+    font-family: var(--body);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gray-light);
+    vertical-align: middle;
+  }
+
+  .pricing-note {
+    font-size: 0.8rem;
+    color: var(--gray-light);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .pricing-divider {
+    height: 1px;
+    background: #2e2e2e;
+    margin-bottom: 2rem;
+  }
+
+  .pricing-features {
+    list-style: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.88rem;
+    color: var(--gray-light);
+    font-weight: 300;
+  }
+
+  .pricing-features li::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* WHY US */
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .stat {
+    border-top: 2px solid var(--accent);
+    padding-top: 1rem;
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 3.2rem;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: var(--gray-light);
+    font-weight: 300;
+  }
+
+  .why-text p {
+    font-size: 1rem;
+    color: var(--gray-light);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--accent);
+    padding: 7rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cta-section .section-label { color: rgba(0,0,0,0.5); }
+
+  .cta-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.95;
+    color: var(--black);
+    max-width: 700px;
+    margin-bottom: 2rem;
+  }
+
+  .cta-section p {
+    color: rgba(0,0,0,0.6);
+    max-width: 480px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .btn-dark {
+    background: var(--black);
+    color: var(--white);
+    padding: 1rem 2.5rem;
+    font-family: var(--body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .btn-dark:hover { opacity: 0.8; }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 1px solid #1f1f1f;
+    padding: 3rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--accent); }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--gray-light);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.8rem;
+    color: var(--gray-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero-sub { flex-direction: column; align-items: flex-start; }
+    .how-grid, .why-grid { grid-template-columns: 1fr; }
+    .services-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .cta-section { padding: 5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">JDI<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Free Demo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-tag">Web Design for Local Businesses</div>
+  <h1>
+    We Build.<br>
+    <span class="line-accent">You Grow.</span><br>
+    That's It.
+  </h1>
+  <div class="hero-sub">
+    <p class="hero-desc">
+      JDI Marketing builds high-converting websites for local businesses — fast, affordable, and done right. No fluff. No tech headaches. Just results.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">See Your Free Demo</a>
+      <a href="#how" class="btn-outline">How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><div class="ticker-dot"></div>Restaurants</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Contractors</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Salons & Barbershops</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Dentists & Chiropractors</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Real Estate Agents</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Auto Shops</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Plumbers & Electricians</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Gyms & Fitness Studios</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Restaurants</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Contractors</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Salons & Barbershops</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Dentists & Chiropractors</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Real Estate Agents</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Auto Shops</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Plumbers & Electricians</div>
+    <div class="ticker-item"><div class="ticker-dot"></div>Gyms & Fitness Studios</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <p class="section-label fade-up">Process</p>
+  <h2 class="section-title fade-up">Simple as it gets</h2>
+  <div class="how-grid">
+    <div class="steps fade-up">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>We build you a free demo</h3>
+          <p>We create a sample website for your business before you spend a dime — so you can see exactly what you're getting.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>We walk through it together</h3>
+          <p>Hop on a quick Zoom call with us. We'll show you the demo live, answer your questions, and tailor it to your vision.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3>We build the full site</h3>
+          <p>Once you're in, we collect your content and build your complete site — typically delivered in 5–7 days.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <h3>We go live</h3>
+          <p>Your site goes live at your real domain. We handle all the technical setup — you just watch the calls come in.</p>
+        </div>
+      </div>
+    </div>
+    <div class="how-visual fade-up">
+      <div class="mock-browser">
+        <div class="mock-bar">
+          <div class="mock-dot" style="background:#ff5f57;"></div>
+          <div class="mock-dot" style="background:#ffbd2e;"></div>
+          <div class="mock-dot" style="background:#28c840;"></div>
+          <div class="mock-url"><span>mikesplumbing.com</span></div>
+        </div>
+        <div class="mock-hero-strip">
+          <div class="mock-hero-text">
+            <div class="mock-h wide"></div>
+            <div class="mock-h narrow"></div>
+            <div style="margin-top:10px;"><div class="mock-h btn"></div></div>
+          </div>
+        </div>
+        <div class="mock-cards">
+          <div class="mock-card"></div>
+          <div class="mock-card"></div>
+          <div class="mock-card"></div>
+        </div>
+        <div style="padding:10px; background:#0d0d0d;">
+          <div style="height:6px; background:#1a1a1a; border-radius:2px; width:80%; margin-bottom:5px;"></div>
+          <div style="height:6px; background:#1a1a1a; border-radius:2px; width:60%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <p class="section-label fade-up">What We Offer</p>
+  <h2 class="section-title fade-up">Everything your<br>site needs</h2>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon">⚡</div>
+      <h3>Custom Web Design</h3>
+      <p>Unique, professional websites built specifically for your business — not a cookie-cutter template. Fast, mobile-friendly, and built to convert.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">📍</div>
+      <h3>Local SEO Setup</h3>
+      <p>We optimize your site so customers in your area can actually find you on Google. More visibility means more calls, more bookings, more revenue.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">📱</div>
+      <h3>Mobile Optimization</h3>
+      <p>Over 70% of your customers are on their phone. Every site we build looks perfect on any screen — phone, tablet, or desktop.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🔒</div>
+      <h3>Hosting & Maintenance</h3>
+      <p>We handle all the technical stuff — hosting, security, updates, and backups. You run your business. We'll keep the lights on.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">📝</div>
+      <h3>Content & Copywriting</h3>
+      <p>Don't have the words? No problem. We'll write compelling copy for your pages that speaks directly to your customers and drives action.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">📊</div>
+      <h3>Analytics & Reporting</h3>
+      <p>Know exactly how your site is performing. We set up Google Analytics and send you simple monthly reports — no tech degree required.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <p class="section-label fade-up">Pricing</p>
+  <h2 class="section-title fade-up">Straightforward.<br>No surprises.</h2>
+  <div class="pricing-grid">
+    <div class="pricing-card fade-up">
+      <p class="pricing-tier">Starter</p>
+      <p class="pricing-price"><sub>$</sub>499</p>
+      <p class="pricing-note">one-time payment</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>3-page custom website</li>
+        <li>Mobile responsive design</li>
+        <li>Contact form</li>
+        <li>Domain connection</li>
+        <li>2 rounds of revisions</li>
+        <li>1 month free support</li>
+      </ul>
+      <a href="#contact" class="btn-outline" style="text-align:center;">Get Started</a>
+    </div>
+    <div class="pricing-card featured fade-up">
+      <div class="featured-badge">Most Popular</div>
+      <p class="pricing-tier">Growth</p>
+      <p class="pricing-price"><sub>$</sub>999</p>
+      <p class="pricing-note">one-time + $149/mo maintenance</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>5-page custom website</li>
+        <li>Mobile responsive design</li>
+        <li>Local SEO setup</li>
+        <li>Google Analytics</li>
+        <li>Contact form + click-to-call</li>
+        <li>Unlimited revisions</li>
+        <li>Ongoing maintenance plan</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="text-align:center;">Get Started</a>
+    </div>
+    <div class="pricing-card fade-up">
+      <p class="pricing-tier">Pro</p>
+      <p class="pricing-price"><sub>$</sub>1,999</p>
+      <p class="pricing-note">one-time + $249/mo maintenance</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li>Full custom website (any pages)</li>
+        <li>Priority SEO optimization</li>
+        <li>Photo gallery / portfolio</li>
+        <li>Blog setup</li>
+        <li>Monthly performance report</li>
+        <li>Priority support</li>
+        <li>Quarterly redesign updates</li>
+      </ul>
+      <a href="#contact" class="btn-outline" style="text-align:center;">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why-grid">
+    <div class="fade-up">
+      <p class="section-label">Why JDI</p>
+      <h2 class="section-title">Built for<br>local business</h2>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">48hr</div>
+          <div class="stat-label">Free demo turnaround</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5-7</div>
+          <div class="stat-label">Days to go live</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Mobile optimized</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">$0</div>
+          <div class="stat-label">Upfront risk to you</div>
+        </div>
+      </div>
+    </div>
+    <div class="why-text fade-up">
+      <p>Most web agencies charge thousands of dollars for a website you can't even see until you've already paid. We do things differently.</p>
+      <p>We build your demo first — completely free — so you know exactly what you're getting before you commit to anything. If you love it, great. If not, you walk away with zero obligation.</p>
+      <p>We specialize in local businesses because that's where we see the biggest impact. A plumber with no website is leaving jobs on the table every single day.</p>
+      <a href="#contact" class="btn-primary">See Your Free Demo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <p class="section-label">Get Started</p>
+  <h2>Ready to see your site?</h2>
+  <p>We'll build you a free demo website in 48 hours. No credit card. No commitment. Just a website that could change your business.</p>
+  <a href="mailto:hello@jdimarketing.com" class="btn-dark">Claim Your Free Demo</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">JDI<span>.</span></div>
+  <p class="footer-copy">© 2025 JDI Marketing. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="#how">Process</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="mailto:hello@jdimarketing.com">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
